@@ -9,10 +9,15 @@
 /* Begin PBXBuildFile section */
 		4237BC591D7CEDE500C01482 /* Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4237BC581D7CEDE500C01482 /* Dictionary.swift */; };
 		4237BC5D1D7CEEF300C01482 /* ArticleSnippet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4237BC5C1D7CEEF300C01482 /* ArticleSnippet.swift */; };
+		427286911D7E30F600758321 /* FeedsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427286901D7E30F600758321 /* FeedsListViewController.swift */; };
+		427286931D7E316600758321 /* ArticlesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427286921D7E316600758321 /* ArticlesListViewController.swift */; };
+		427286951D7E317000758321 /* ArticleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427286941D7E317000758321 /* ArticleViewController.swift */; };
+		427286991D7E31E400758321 /* EditableFeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427286981D7E31E400758321 /* EditableFeedViewController.swift */; };
+		4272869D1D7E32B100758321 /* Feed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4272869C1D7E32B100758321 /* Feed.swift */; };
+		427286A21D7E364100758321 /* SystemUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427286A11D7E364100758321 /* SystemUtils.swift */; };
 		42C3DB2E1D7C7C5D0031FBC8 /* XMLParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C3DB2D1D7C7C5D0031FBC8 /* XMLParser.swift */; };
 		42C3DB301D7C7DE80031FBC8 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C3DB2F1D7C7DE80031FBC8 /* NetworkService.swift */; };
 		42CE77A41D7C750800957CC2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42CE77A31D7C750800957CC2 /* AppDelegate.swift */; };
-		42CE77A61D7C750800957CC2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42CE77A51D7C750800957CC2 /* ViewController.swift */; };
 		42CE77A91D7C750800957CC2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 42CE77A71D7C750800957CC2 /* Main.storyboard */; };
 		42CE77AB1D7C750800957CC2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 42CE77AA1D7C750800957CC2 /* Assets.xcassets */; };
 		42CE77AE1D7C750800957CC2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 42CE77AC1D7C750800957CC2 /* LaunchScreen.storyboard */; };
@@ -41,11 +46,16 @@
 /* Begin PBXFileReference section */
 		4237BC581D7CEDE500C01482 /* Dictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dictionary.swift; sourceTree = "<group>"; };
 		4237BC5C1D7CEEF300C01482 /* ArticleSnippet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleSnippet.swift; sourceTree = "<group>"; };
+		427286901D7E30F600758321 /* FeedsListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedsListViewController.swift; sourceTree = "<group>"; };
+		427286921D7E316600758321 /* ArticlesListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticlesListViewController.swift; sourceTree = "<group>"; };
+		427286941D7E317000758321 /* ArticleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleViewController.swift; sourceTree = "<group>"; };
+		427286981D7E31E400758321 /* EditableFeedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditableFeedViewController.swift; sourceTree = "<group>"; };
+		4272869C1D7E32B100758321 /* Feed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Feed.swift; sourceTree = "<group>"; };
+		427286A11D7E364100758321 /* SystemUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SystemUtils.swift; sourceTree = "<group>"; };
 		42C3DB2D1D7C7C5D0031FBC8 /* XMLParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XMLParser.swift; sourceTree = "<group>"; };
 		42C3DB2F1D7C7DE80031FBC8 /* NetworkService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		42CE77A01D7C750800957CC2 /* RSS Reader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "RSS Reader.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		42CE77A31D7C750800957CC2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		42CE77A51D7C750800957CC2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		42CE77A81D7C750800957CC2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		42CE77AA1D7C750800957CC2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		42CE77AD1D7C750800957CC2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -116,8 +126,46 @@
 			isa = PBXGroup;
 			children = (
 				4237BC5C1D7CEEF300C01482 /* ArticleSnippet.swift */,
+				4272869C1D7E32B100758321 /* Feed.swift */,
 			);
 			name = Models;
+			sourceTree = "<group>";
+		};
+		4272868E1D7E309B00758321 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				427286901D7E30F600758321 /* FeedsListViewController.swift */,
+				427286921D7E316600758321 /* ArticlesListViewController.swift */,
+				427286941D7E317000758321 /* ArticleViewController.swift */,
+				427286981D7E31E400758321 /* EditableFeedViewController.swift */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		4272869E1D7E349800758321 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				42CE77AA1D7C750800957CC2 /* Assets.xcassets */,
+				42CE77AF1D7C750800957CC2 /* Info.plist */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		4272869F1D7E34A800758321 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				42CE77A71D7C750800957CC2 /* Main.storyboard */,
+				42CE77AC1D7C750800957CC2 /* LaunchScreen.storyboard */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		427286A01D7E362700758321 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				427286A11D7E364100758321 /* SystemUtils.swift */,
+			);
+			name = Utilities;
 			sourceTree = "<group>";
 		};
 		42C3DB2C1D7C7C160031FBC8 /* Services */ = {
@@ -154,15 +202,14 @@
 		42CE77A21D7C750800957CC2 /* RSS Reader */ = {
 			isa = PBXGroup;
 			children = (
+				427286A01D7E362700758321 /* Utilities */,
+				42CE77A31D7C750800957CC2 /* AppDelegate.swift */,
+				4272869F1D7E34A800758321 /* Views */,
+				4272869E1D7E349800758321 /* Resources */,
+				4272868E1D7E309B00758321 /* Controllers */,
 				4237BC5B1D7CEEE700C01482 /* Models */,
 				4237BC5A1D7CEDE800C01482 /* Extensions */,
 				42C3DB2C1D7C7C160031FBC8 /* Services */,
-				42CE77A31D7C750800957CC2 /* AppDelegate.swift */,
-				42CE77A51D7C750800957CC2 /* ViewController.swift */,
-				42CE77A71D7C750800957CC2 /* Main.storyboard */,
-				42CE77AA1D7C750800957CC2 /* Assets.xcassets */,
-				42CE77AC1D7C750800957CC2 /* LaunchScreen.storyboard */,
-				42CE77AF1D7C750800957CC2 /* Info.plist */,
 			);
 			path = "RSS Reader";
 			sourceTree = "<group>";
@@ -367,9 +414,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				42CE77A61D7C750800957CC2 /* ViewController.swift in Sources */,
+				4272869D1D7E32B100758321 /* Feed.swift in Sources */,
 				4237BC591D7CEDE500C01482 /* Dictionary.swift in Sources */,
+				427286A21D7E364100758321 /* SystemUtils.swift in Sources */,
+				427286931D7E316600758321 /* ArticlesListViewController.swift in Sources */,
+				427286911D7E30F600758321 /* FeedsListViewController.swift in Sources */,
+				427286951D7E317000758321 /* ArticleViewController.swift in Sources */,
 				42CE77A41D7C750800957CC2 /* AppDelegate.swift in Sources */,
+				427286991D7E31E400758321 /* EditableFeedViewController.swift in Sources */,
 				42C3DB301D7C7DE80031FBC8 /* NetworkService.swift in Sources */,
 				4237BC5D1D7CEEF300C01482 /* ArticleSnippet.swift in Sources */,
 				42C3DB2E1D7C7C5D0031FBC8 /* XMLParser.swift in Sources */,

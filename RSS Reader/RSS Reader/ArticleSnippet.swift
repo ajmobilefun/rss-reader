@@ -9,8 +9,8 @@
 import Foundation
 
 /**
-    An object the encapsulates the information used in
-    s
+    An object that encapsulates the 'cared about' information used in
+    an XML RSS data.
 */
 struct ArticleSnippet {
     

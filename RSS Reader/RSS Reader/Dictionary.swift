@@ -40,6 +40,9 @@ extension Dictionary {
         return keyPaths
     }
 
+    /// A function that returns the value for a given key path
+    /// delimited with the "." character. The function returns
+    /// nil if the key path is invalid or the value does not exist.
     func getValueForKeyPath(path: String) -> Value? {
     
         func recursion(keys: [String]) -> Value? {

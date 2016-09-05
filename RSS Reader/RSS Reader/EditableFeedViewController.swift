@@ -7,3 +7,9 @@
 //
 
 import Foundation
+import UIKit
+
+final class EditableFeedViewController: UIViewController {
+
+
+}
