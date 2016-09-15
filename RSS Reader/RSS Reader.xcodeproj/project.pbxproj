@@ -15,6 +15,8 @@
 		427286991D7E31E400758321 /* EditableFeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427286981D7E31E400758321 /* EditableFeedViewController.swift */; };
 		4272869D1D7E32B100758321 /* Feed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4272869C1D7E32B100758321 /* Feed.swift */; };
 		427286A21D7E364100758321 /* SystemUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427286A11D7E364100758321 /* SystemUtils.swift */; };
+		427286A41D7E3DF900758321 /* DBService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427286A31D7E3DF900758321 /* DBService.swift */; };
+		42C1C5BC1D8B5F9200DCAA5C /* TextFieldTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C1C5BB1D8B5F9200DCAA5C /* TextFieldTableViewCell.swift */; };
 		42C3DB2E1D7C7C5D0031FBC8 /* XMLParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C3DB2D1D7C7C5D0031FBC8 /* XMLParser.swift */; };
 		42C3DB301D7C7DE80031FBC8 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C3DB2F1D7C7DE80031FBC8 /* NetworkService.swift */; };
 		42CE77A41D7C750800957CC2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42CE77A31D7C750800957CC2 /* AppDelegate.swift */; };
@@ -52,6 +54,9 @@
 		427286981D7E31E400758321 /* EditableFeedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditableFeedViewController.swift; sourceTree = "<group>"; };
 		4272869C1D7E32B100758321 /* Feed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Feed.swift; sourceTree = "<group>"; };
 		427286A11D7E364100758321 /* SystemUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SystemUtils.swift; sourceTree = "<group>"; };
+		427286A31D7E3DF900758321 /* DBService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DBService.swift; sourceTree = "<group>"; };
+		42B8F3201D7F920700B975CB /* RSSReader-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RSSReader-Bridging-Header.h"; sourceTree = "<group>"; };
+		42C1C5BB1D8B5F9200DCAA5C /* TextFieldTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldTableViewCell.swift; sourceTree = "<group>"; };
 		42C3DB2D1D7C7C5D0031FBC8 /* XMLParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XMLParser.swift; sourceTree = "<group>"; };
 		42C3DB2F1D7C7DE80031FBC8 /* NetworkService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		42CE77A01D7C750800957CC2 /* RSS Reader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "RSS Reader.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -156,6 +161,7 @@
 			children = (
 				42CE77A71D7C750800957CC2 /* Main.storyboard */,
 				42CE77AC1D7C750800957CC2 /* LaunchScreen.storyboard */,
+				42C1C5BB1D8B5F9200DCAA5C /* TextFieldTableViewCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -173,6 +179,7 @@
 			children = (
 				42C3DB2D1D7C7C5D0031FBC8 /* XMLParser.swift */,
 				42C3DB2F1D7C7DE80031FBC8 /* NetworkService.swift */,
+				427286A31D7E3DF900758321 /* DBService.swift */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -202,8 +209,9 @@
 		42CE77A21D7C750800957CC2 /* RSS Reader */ = {
 			isa = PBXGroup;
 			children = (
-				427286A01D7E362700758321 /* Utilities */,
+				42B8F3201D7F920700B975CB /* RSSReader-Bridging-Header.h */,
 				42CE77A31D7C750800957CC2 /* AppDelegate.swift */,
+				427286A01D7E362700758321 /* Utilities */,
 				4272869F1D7E34A800758321 /* Views */,
 				4272869E1D7E349800758321 /* Resources */,
 				4272868E1D7E309B00758321 /* Controllers */,
@@ -419,6 +427,8 @@
 				427286A21D7E364100758321 /* SystemUtils.swift in Sources */,
 				427286931D7E316600758321 /* ArticlesListViewController.swift in Sources */,
 				427286911D7E30F600758321 /* FeedsListViewController.swift in Sources */,
+				427286A41D7E3DF900758321 /* DBService.swift in Sources */,
+				42C1C5BC1D8B5F9200DCAA5C /* TextFieldTableViewCell.swift in Sources */,
 				427286951D7E317000758321 /* ArticleViewController.swift in Sources */,
 				42CE77A41D7C750800957CC2 /* AppDelegate.swift in Sources */,
 				427286991D7E31E400758321 /* EditableFeedViewController.swift in Sources */,
@@ -571,6 +581,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.andrewjohnson.RSS-Reader";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "RSS Reader/RSSReader-Bridging-Header.h";
 			};
 			name = Debug;
 		};
@@ -583,6 +594,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.andrewjohnson.RSS-Reader";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "RSS Reader/RSSReader-Bridging-Header.h";
 			};
 			name = Release;
 		};

@@ -7,12 +7,13 @@
 //
 
 import Foundation
+import Gloss
 
 /**
     An object that encapsulates the 'cared about' information used in
     an XML RSS data.
 */
-struct ArticleSnippet {
+struct ArticleSnippet: CBLDocument {
     
     // MARK: Fields
     
@@ -21,4 +22,45 @@ struct ArticleSnippet {
     var pubDate: String?
     var author: String?
     var link: String?
+    
+    
+    // MARK: Initializers
+    
+    init() {
+        id = NSUUID().UUIDString
+        rev = nil
+    }
+    
+    
+    // MARK: CBLDocument Implementation
+    
+    static let view = CBLView.Articles
+    let id: String
+    let rev: String?
+    
+    init?(json: JSON) {
+    
+        // Assert we have an id
+        guard let id: String = "_id" <~~ json
+        else { return nil }
+        
+        // Assign the fields
+        self.id = id
+        rev = "_rev" <~~ json
+        title = "title" <~~ json
+        description = "description" <~~ json
+        pubDate = "pubDate" <~~ json
+        author = "author" <~~ json
+        link = "link" <~~ json
+    }
+    
+    func toJSON() -> JSON? {
+        return jsonify([
+            "title" ~~> title,
+            "description" ~~> description,
+            "pubDate" ~~> pubDate,
+            "author" ~~> author,
+            "link" ~~> link
+        ])
+    }
 }
