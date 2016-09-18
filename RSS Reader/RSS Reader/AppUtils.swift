@@ -18,7 +18,8 @@ struct AppUtils {
     
     static func popup(toController: UIViewController, fromController: UIViewController) {
         let navController = UINavigationController(rootViewController: toController)
-        // TODO - Configure navigation controller
+        navController.navigationBar.tintColor = FlatUIColor.Clouds
+        navController.navigationBar.barTintColor = FlatUIColor.WetAsphalt
         fromController.presentViewController(navController, animated: true, completion: nil)
     }
 }

@@ -21,8 +21,14 @@ final class TextFieldTableViewCell: UITableViewCell {
     
     // MARK: Initializers
     
+    init() {
+        super.init(style: .Default, reuseIdentifier: nil)
+        setup()
+    }
+    
     init(reuseId: String?) {
         super.init(style: .Default, reuseIdentifier: reuseId)
+        setup()
     }
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
@@ -33,21 +39,31 @@ final class TextFieldTableViewCell: UITableViewCell {
         fatalError("\(#function) should not be used!")
     }
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        
+    
+    // MARK: Helper Functions
+    
+    private func setup() {
+    
         // Configure the views
         textField.borderStyle = .None
         selectionStyle = .None
+    }
+    
+    
+    // MARK: UIView Callbacks
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
         
         // Set the constraints
         let constraints = NSLayoutConstraint.constraintsWithVisualFormat(
-            "H:||",
+            "H:|-margin-[textField]-margin-|",
             options: .AlignAllCenterY,
             metrics: ["margin": 8],
             views: ["textField": textField]
         )
         contentView.addSubview(textField)
         contentView.addConstraints(constraints)
+        textField.translatesAutoresizingMaskIntoConstraints = false
     }
 }

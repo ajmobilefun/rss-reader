@@ -33,7 +33,7 @@ final class EditableFeedViewController: UITableViewController {
     
     init(feed: Feed?) {
         self.feed = feed ?? Feed()
-        super.init(nibName: nil, bundle: nil)
+        super.init(style: .Grouped)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -75,7 +75,8 @@ final class EditableFeedViewController: UITableViewController {
     
     func saveTapped(sender: UIBarButtonItem) {
         guard feed.url != nil && feed.title != nil else { return }
-        // TODO - Save
+        DBService.sharedInstance.save(feed)
+        dismissViewControllerAnimated(true, completion: nil)
     }
     
     
@@ -105,6 +106,7 @@ final class EditableFeedViewController: UITableViewController {
                 case 0: return ("Title", feed.title)
                 case 1: return ("Subtitle", feed.subtitle)
                 case 2: return ("Url (e.g. http://blogs.nasa.gov/stationreport/feed)", feed.url?.absoluteString)
+                default: return ("", nil)
                 }
             }()
             cell.textField.placeholder = rep.placeholder
@@ -114,7 +116,7 @@ final class EditableFeedViewController: UITableViewController {
         // Selection fields
         } else {
             let reuseId = "selection_cell"
-            let cell = tableView.dequeueReusableCellWithIdentifier(reuseId) ?? UITableViewCell(style: .Value2, reuseIdentifier: reuseId)
+            let cell = tableView.dequeueReusableCellWithIdentifier(reuseId) ?? UITableViewCell(style: .Value1, reuseIdentifier: reuseId)
             cell.selectionStyle = .Blue
             cell.accessoryType = .DisclosureIndicator
             cell.textLabel?.text = "Category"

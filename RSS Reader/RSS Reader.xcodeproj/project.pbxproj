@@ -14,8 +14,12 @@
 		427286951D7E317000758321 /* ArticleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427286941D7E317000758321 /* ArticleViewController.swift */; };
 		427286991D7E31E400758321 /* EditableFeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427286981D7E31E400758321 /* EditableFeedViewController.swift */; };
 		4272869D1D7E32B100758321 /* Feed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4272869C1D7E32B100758321 /* Feed.swift */; };
-		427286A21D7E364100758321 /* SystemUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427286A11D7E364100758321 /* SystemUtils.swift */; };
+		427286A21D7E364100758321 /* AppUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427286A11D7E364100758321 /* AppUtils.swift */; };
 		427286A41D7E3DF900758321 /* DBService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427286A31D7E3DF900758321 /* DBService.swift */; };
+		427957041D8DA29C00EC0F02 /* PListService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427957031D8DA29C00EC0F02 /* PListService.swift */; };
+		42AFA9FA1D8C0E5B00D089FC /* FlatUIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42AFA9F91D8C0E5B00D089FC /* FlatUIColor.swift */; };
+		42AFA9FC1D8C13B500D089FC /* TextUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42AFA9FB1D8C13B500D089FC /* TextUtils.swift */; };
+		42B6ADCD1D8E2B820041FEEA /* MockFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42B6ADCC1D8E2B820041FEEA /* MockFactory.swift */; };
 		42C1C5BC1D8B5F9200DCAA5C /* TextFieldTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C1C5BB1D8B5F9200DCAA5C /* TextFieldTableViewCell.swift */; };
 		42C3DB2E1D7C7C5D0031FBC8 /* XMLParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C3DB2D1D7C7C5D0031FBC8 /* XMLParser.swift */; };
 		42C3DB301D7C7DE80031FBC8 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C3DB2F1D7C7DE80031FBC8 /* NetworkService.swift */; };
@@ -25,6 +29,8 @@
 		42CE77AE1D7C750800957CC2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 42CE77AC1D7C750800957CC2 /* LaunchScreen.storyboard */; };
 		42CE77B91D7C750800957CC2 /* RSS_ReaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42CE77B81D7C750800957CC2 /* RSS_ReaderTests.swift */; };
 		42CE77C41D7C750800957CC2 /* RSS_ReaderUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42CE77C31D7C750800957CC2 /* RSS_ReaderUITests.swift */; };
+		42D7A39B1D8C0AF200D995C7 /* CustomListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D7A39A1D8C0AF200D995C7 /* CustomListViewController.swift */; };
+		42D7A39D1D8C0BA900D995C7 /* TextFieldButtonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D7A39C1D8C0BA900D995C7 /* TextFieldButtonTableViewCell.swift */; };
 		D9E95507A415E278197F6147 /* Pods_RSS_Reader.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A79263D796C9C7498D6DF06 /* Pods_RSS_Reader.framework */; };
 /* End PBXBuildFile section */
 
@@ -53,8 +59,12 @@
 		427286941D7E317000758321 /* ArticleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleViewController.swift; sourceTree = "<group>"; };
 		427286981D7E31E400758321 /* EditableFeedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditableFeedViewController.swift; sourceTree = "<group>"; };
 		4272869C1D7E32B100758321 /* Feed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Feed.swift; sourceTree = "<group>"; };
-		427286A11D7E364100758321 /* SystemUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SystemUtils.swift; sourceTree = "<group>"; };
+		427286A11D7E364100758321 /* AppUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppUtils.swift; sourceTree = "<group>"; };
 		427286A31D7E3DF900758321 /* DBService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DBService.swift; sourceTree = "<group>"; };
+		427957031D8DA29C00EC0F02 /* PListService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PListService.swift; sourceTree = "<group>"; };
+		42AFA9F91D8C0E5B00D089FC /* FlatUIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlatUIColor.swift; sourceTree = "<group>"; };
+		42AFA9FB1D8C13B500D089FC /* TextUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextUtils.swift; sourceTree = "<group>"; };
+		42B6ADCC1D8E2B820041FEEA /* MockFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockFactory.swift; sourceTree = "<group>"; };
 		42B8F3201D7F920700B975CB /* RSSReader-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RSSReader-Bridging-Header.h"; sourceTree = "<group>"; };
 		42C1C5BB1D8B5F9200DCAA5C /* TextFieldTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldTableViewCell.swift; sourceTree = "<group>"; };
 		42C3DB2D1D7C7C5D0031FBC8 /* XMLParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XMLParser.swift; sourceTree = "<group>"; };
@@ -71,6 +81,8 @@
 		42CE77BF1D7C750800957CC2 /* RSS ReaderUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "RSS ReaderUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		42CE77C31D7C750800957CC2 /* RSS_ReaderUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSS_ReaderUITests.swift; sourceTree = "<group>"; };
 		42CE77C51D7C750800957CC2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		42D7A39A1D8C0AF200D995C7 /* CustomListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomListViewController.swift; sourceTree = "<group>"; };
+		42D7A39C1D8C0BA900D995C7 /* TextFieldButtonTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldButtonTableViewCell.swift; sourceTree = "<group>"; };
 		6456102A45A629561DCAEF37 /* Pods-RSS Reader.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RSS Reader.release.xcconfig"; path = "Pods/Target Support Files/Pods-RSS Reader/Pods-RSS Reader.release.xcconfig"; sourceTree = "<group>"; };
 		8A79263D796C9C7498D6DF06 /* Pods_RSS_Reader.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RSS_Reader.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F34162BAB7231B745E9CD9D /* Pods-RSS Reader.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RSS Reader.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RSS Reader/Pods-RSS Reader.debug.xcconfig"; sourceTree = "<group>"; };
@@ -143,6 +155,7 @@
 				427286921D7E316600758321 /* ArticlesListViewController.swift */,
 				427286941D7E317000758321 /* ArticleViewController.swift */,
 				427286981D7E31E400758321 /* EditableFeedViewController.swift */,
+				42D7A39A1D8C0AF200D995C7 /* CustomListViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -162,6 +175,7 @@
 				42CE77A71D7C750800957CC2 /* Main.storyboard */,
 				42CE77AC1D7C750800957CC2 /* LaunchScreen.storyboard */,
 				42C1C5BB1D8B5F9200DCAA5C /* TextFieldTableViewCell.swift */,
+				42D7A39C1D8C0BA900D995C7 /* TextFieldButtonTableViewCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -169,9 +183,19 @@
 		427286A01D7E362700758321 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
-				427286A11D7E364100758321 /* SystemUtils.swift */,
+				427286A11D7E364100758321 /* AppUtils.swift */,
+				42AFA9FB1D8C13B500D089FC /* TextUtils.swift */,
 			);
 			name = Utilities;
+			sourceTree = "<group>";
+		};
+		42AFA9F81D8C0E4E00D089FC /* Factories */ = {
+			isa = PBXGroup;
+			children = (
+				42B6ADCC1D8E2B820041FEEA /* MockFactory.swift */,
+				42AFA9F91D8C0E5B00D089FC /* FlatUIColor.swift */,
+			);
+			name = Factories;
 			sourceTree = "<group>";
 		};
 		42C3DB2C1D7C7C160031FBC8 /* Services */ = {
@@ -180,6 +204,7 @@
 				42C3DB2D1D7C7C5D0031FBC8 /* XMLParser.swift */,
 				42C3DB2F1D7C7DE80031FBC8 /* NetworkService.swift */,
 				427286A31D7E3DF900758321 /* DBService.swift */,
+				427957031D8DA29C00EC0F02 /* PListService.swift */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -209,6 +234,7 @@
 		42CE77A21D7C750800957CC2 /* RSS Reader */ = {
 			isa = PBXGroup;
 			children = (
+				42AFA9F81D8C0E4E00D089FC /* Factories */,
 				42B8F3201D7F920700B975CB /* RSSReader-Bridging-Header.h */,
 				42CE77A31D7C750800957CC2 /* AppDelegate.swift */,
 				427286A01D7E362700758321 /* Utilities */,
@@ -424,17 +450,23 @@
 			files = (
 				4272869D1D7E32B100758321 /* Feed.swift in Sources */,
 				4237BC591D7CEDE500C01482 /* Dictionary.swift in Sources */,
-				427286A21D7E364100758321 /* SystemUtils.swift in Sources */,
+				427286A21D7E364100758321 /* AppUtils.swift in Sources */,
 				427286931D7E316600758321 /* ArticlesListViewController.swift in Sources */,
 				427286911D7E30F600758321 /* FeedsListViewController.swift in Sources */,
 				427286A41D7E3DF900758321 /* DBService.swift in Sources */,
+				427957041D8DA29C00EC0F02 /* PListService.swift in Sources */,
+				42AFA9FC1D8C13B500D089FC /* TextUtils.swift in Sources */,
 				42C1C5BC1D8B5F9200DCAA5C /* TextFieldTableViewCell.swift in Sources */,
 				427286951D7E317000758321 /* ArticleViewController.swift in Sources */,
 				42CE77A41D7C750800957CC2 /* AppDelegate.swift in Sources */,
+				42D7A39B1D8C0AF200D995C7 /* CustomListViewController.swift in Sources */,
+				42D7A39D1D8C0BA900D995C7 /* TextFieldButtonTableViewCell.swift in Sources */,
 				427286991D7E31E400758321 /* EditableFeedViewController.swift in Sources */,
+				42AFA9FA1D8C0E5B00D089FC /* FlatUIColor.swift in Sources */,
 				42C3DB301D7C7DE80031FBC8 /* NetworkService.swift in Sources */,
 				4237BC5D1D7CEEF300C01482 /* ArticleSnippet.swift in Sources */,
 				42C3DB2E1D7C7C5D0031FBC8 /* XMLParser.swift in Sources */,
+				42B6ADCD1D8E2B820041FEEA /* MockFactory.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -116,11 +116,14 @@ final class DBService {
     }
     
     
-    // MARK: Public Methods
+    // MARK: Destructors
     
     func delete(documentWithId id: String) {
         let _ = try? db.deleteLocalDocumentWithID(id)
     }
+    
+    
+    // MARK: Getters
     
     func get<Object: CBLDocument>(documentWithId id: String) -> Object? {
     
@@ -157,4 +160,27 @@ final class DBService {
         }
         return objects
     }
+    
+    
+    // MARK: Savers
+    
+    func save<Object: CBLDocument>(object: Object) {
+    
+        // Convert the object in to json
+        guard var json = object.toJSON() else {
+            print("\(#function) was unable to produce json from the passed object")
+            return
+        }
+        
+        // Get the document and overwrite it
+        let document = db.documentWithID(object.id)
+        let _ = json.removeValueForKey(object.id)
+        guard let _ = try? document?.putProperties(json) else {
+            print("\(#function) failed to put properties onto document with id \(object.id)")
+            return
+        }
+    }
 }
+
+
+
