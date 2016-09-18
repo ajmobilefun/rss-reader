@@ -3,8 +3,8 @@ FRAMEWORK_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/couchbase-lite-ios" "${PODS_
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
 HEADER_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/couchbase-lite-ios"
 LD_RUNPATH_SEARCH_PATHS = $(inherited) '@executable_path/Frameworks' '@loader_path/Frameworks'
-OTHER_CFLAGS = $(inherited) -iquote "$CONFIGURATION_BUILD_DIR/Gloss.framework/Headers" -isystem "${PODS_ROOT}/Headers/Public" -isystem "${PODS_ROOT}/Headers/Public/couchbase-lite-ios"
-OTHER_LDFLAGS = $(inherited) -ObjC -l"c++" -l"sqlite3" -l"z" -framework "CFNetwork" -framework "CouchbaseLite" -framework "CouchbaseLiteListener" -framework "Gloss" -framework "Security" -framework "SystemConfiguration"
+OTHER_CFLAGS = $(inherited) -iquote "$CONFIGURATION_BUILD_DIR/Gloss.framework/Headers" -iquote "$CONFIGURATION_BUILD_DIR/MGSwipeTableCell.framework/Headers" -isystem "${PODS_ROOT}/Headers/Public" -isystem "${PODS_ROOT}/Headers/Public/couchbase-lite-ios"
+OTHER_LDFLAGS = $(inherited) -ObjC -l"c++" -l"sqlite3" -l"z" -framework "CFNetwork" -framework "CouchbaseLite" -framework "CouchbaseLiteListener" -framework "Gloss" -framework "MGSwipeTableCell" -framework "Security" -framework "SystemConfiguration"
 OTHER_SWIFT_FLAGS = $(inherited) "-D" "COCOAPODS"
 PODS_FRAMEWORK_BUILD_PATH = $(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/Pods-RSS Reader
 PODS_ROOT = ${SRCROOT}/Pods
