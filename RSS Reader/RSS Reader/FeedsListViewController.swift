@@ -37,9 +37,18 @@ final class FeedsListViewController: UITableViewController {
     
     // MARK: Helper Methods
     
+    func segmentDidChange() {
+        let index = segmentControl.selectedSegmentIndex
+        let rawValue = Segment.list[index]
+        currentSegment = Segment(rawValue: rawValue) ?? .Category
+        PListService.setSegment(currentSegment)
+        loadFeeds()
+    }
+    
     func addButtonTapped() {
         let controller = EditableFeedViewController(feed: nil)
-        AppUtils.popup(controller, fromController: self)
+        let navController = NavigationController(rootViewController: controller)
+        presentViewController(navController, animated: true, completion: nil)
     }
     
     private func loadFeeds() {
@@ -120,6 +129,7 @@ final class FeedsListViewController: UITableViewController {
         currentSegment = PListService.getSegment() ?? .Category
         segmentControl.selectedSegmentIndex = Segment.list.indexOf(currentSegment.rawValue) ?? 0
         segmentControl.tintColor = FlatUIColor.WetAsphalt
+        segmentControl.addTarget(self, action: #selector(segmentDidChange), forControlEvents: .ValueChanged)
         searchBar.searchBarStyle = .Minimal
         
         // Create a container for the subviews
@@ -168,8 +178,13 @@ final class FeedsListViewController: UITableViewController {
     
     // MARK: UIViewController LifeCycle Callbacks
     
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return .LightContent
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        setNeedsStatusBarAppearanceUpdate()
         setupNavBar()
         setupTable()
     }

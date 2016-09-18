@@ -14,7 +14,6 @@
 		427286951D7E317000758321 /* ArticleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427286941D7E317000758321 /* ArticleViewController.swift */; };
 		427286991D7E31E400758321 /* EditableFeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427286981D7E31E400758321 /* EditableFeedViewController.swift */; };
 		4272869D1D7E32B100758321 /* Feed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4272869C1D7E32B100758321 /* Feed.swift */; };
-		427286A21D7E364100758321 /* AppUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427286A11D7E364100758321 /* AppUtils.swift */; };
 		427286A41D7E3DF900758321 /* DBService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427286A31D7E3DF900758321 /* DBService.swift */; };
 		427957041D8DA29C00EC0F02 /* PListService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427957031D8DA29C00EC0F02 /* PListService.swift */; };
 		42AFA9FA1D8C0E5B00D089FC /* FlatUIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42AFA9F91D8C0E5B00D089FC /* FlatUIColor.swift */; };
@@ -24,13 +23,13 @@
 		42C3DB2E1D7C7C5D0031FBC8 /* XMLParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C3DB2D1D7C7C5D0031FBC8 /* XMLParser.swift */; };
 		42C3DB301D7C7DE80031FBC8 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C3DB2F1D7C7DE80031FBC8 /* NetworkService.swift */; };
 		42CE77A41D7C750800957CC2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42CE77A31D7C750800957CC2 /* AppDelegate.swift */; };
-		42CE77A91D7C750800957CC2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 42CE77A71D7C750800957CC2 /* Main.storyboard */; };
 		42CE77AB1D7C750800957CC2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 42CE77AA1D7C750800957CC2 /* Assets.xcassets */; };
 		42CE77AE1D7C750800957CC2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 42CE77AC1D7C750800957CC2 /* LaunchScreen.storyboard */; };
 		42CE77B91D7C750800957CC2 /* RSS_ReaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42CE77B81D7C750800957CC2 /* RSS_ReaderTests.swift */; };
 		42CE77C41D7C750800957CC2 /* RSS_ReaderUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42CE77C31D7C750800957CC2 /* RSS_ReaderUITests.swift */; };
 		42D7A39B1D8C0AF200D995C7 /* CustomListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D7A39A1D8C0AF200D995C7 /* CustomListViewController.swift */; };
 		42D7A39D1D8C0BA900D995C7 /* TextFieldButtonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D7A39C1D8C0BA900D995C7 /* TextFieldButtonTableViewCell.swift */; };
+		42ECEB291D8EDAA5007A34A4 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42ECEB281D8EDAA5007A34A4 /* NavigationController.swift */; };
 		D9E95507A415E278197F6147 /* Pods_RSS_Reader.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A79263D796C9C7498D6DF06 /* Pods_RSS_Reader.framework */; };
 /* End PBXBuildFile section */
 
@@ -59,7 +58,6 @@
 		427286941D7E317000758321 /* ArticleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleViewController.swift; sourceTree = "<group>"; };
 		427286981D7E31E400758321 /* EditableFeedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditableFeedViewController.swift; sourceTree = "<group>"; };
 		4272869C1D7E32B100758321 /* Feed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Feed.swift; sourceTree = "<group>"; };
-		427286A11D7E364100758321 /* AppUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppUtils.swift; sourceTree = "<group>"; };
 		427286A31D7E3DF900758321 /* DBService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DBService.swift; sourceTree = "<group>"; };
 		427957031D8DA29C00EC0F02 /* PListService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PListService.swift; sourceTree = "<group>"; };
 		42AFA9F91D8C0E5B00D089FC /* FlatUIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlatUIColor.swift; sourceTree = "<group>"; };
@@ -71,7 +69,6 @@
 		42C3DB2F1D7C7DE80031FBC8 /* NetworkService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		42CE77A01D7C750800957CC2 /* RSS Reader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "RSS Reader.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		42CE77A31D7C750800957CC2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		42CE77A81D7C750800957CC2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		42CE77AA1D7C750800957CC2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		42CE77AD1D7C750800957CC2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		42CE77AF1D7C750800957CC2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -83,6 +80,7 @@
 		42CE77C51D7C750800957CC2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		42D7A39A1D8C0AF200D995C7 /* CustomListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomListViewController.swift; sourceTree = "<group>"; };
 		42D7A39C1D8C0BA900D995C7 /* TextFieldButtonTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldButtonTableViewCell.swift; sourceTree = "<group>"; };
+		42ECEB281D8EDAA5007A34A4 /* NavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 		6456102A45A629561DCAEF37 /* Pods-RSS Reader.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RSS Reader.release.xcconfig"; path = "Pods/Target Support Files/Pods-RSS Reader/Pods-RSS Reader.release.xcconfig"; sourceTree = "<group>"; };
 		8A79263D796C9C7498D6DF06 /* Pods_RSS_Reader.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RSS_Reader.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F34162BAB7231B745E9CD9D /* Pods-RSS Reader.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RSS Reader.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RSS Reader/Pods-RSS Reader.debug.xcconfig"; sourceTree = "<group>"; };
@@ -156,6 +154,7 @@
 				427286941D7E317000758321 /* ArticleViewController.swift */,
 				427286981D7E31E400758321 /* EditableFeedViewController.swift */,
 				42D7A39A1D8C0AF200D995C7 /* CustomListViewController.swift */,
+				42ECEB281D8EDAA5007A34A4 /* NavigationController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -172,7 +171,6 @@
 		4272869F1D7E34A800758321 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				42CE77A71D7C750800957CC2 /* Main.storyboard */,
 				42CE77AC1D7C750800957CC2 /* LaunchScreen.storyboard */,
 				42C1C5BB1D8B5F9200DCAA5C /* TextFieldTableViewCell.swift */,
 				42D7A39C1D8C0BA900D995C7 /* TextFieldButtonTableViewCell.swift */,
@@ -183,7 +181,6 @@
 		427286A01D7E362700758321 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
-				427286A11D7E364100758321 /* AppUtils.swift */,
 				42AFA9FB1D8C13B500D089FC /* TextUtils.swift */,
 			);
 			name = Utilities;
@@ -375,7 +372,6 @@
 			files = (
 				42CE77AE1D7C750800957CC2 /* LaunchScreen.storyboard in Resources */,
 				42CE77AB1D7C750800957CC2 /* Assets.xcassets in Resources */,
-				42CE77A91D7C750800957CC2 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -450,7 +446,6 @@
 			files = (
 				4272869D1D7E32B100758321 /* Feed.swift in Sources */,
 				4237BC591D7CEDE500C01482 /* Dictionary.swift in Sources */,
-				427286A21D7E364100758321 /* AppUtils.swift in Sources */,
 				427286931D7E316600758321 /* ArticlesListViewController.swift in Sources */,
 				427286911D7E30F600758321 /* FeedsListViewController.swift in Sources */,
 				427286A41D7E3DF900758321 /* DBService.swift in Sources */,
@@ -465,6 +460,7 @@
 				42AFA9FA1D8C0E5B00D089FC /* FlatUIColor.swift in Sources */,
 				42C3DB301D7C7DE80031FBC8 /* NetworkService.swift in Sources */,
 				4237BC5D1D7CEEF300C01482 /* ArticleSnippet.swift in Sources */,
+				42ECEB291D8EDAA5007A34A4 /* NavigationController.swift in Sources */,
 				42C3DB2E1D7C7C5D0031FBC8 /* XMLParser.swift in Sources */,
 				42B6ADCD1D8E2B820041FEEA /* MockFactory.swift in Sources */,
 			);
@@ -502,14 +498,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		42CE77A71D7C750800957CC2 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				42CE77A81D7C750800957CC2 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		42CE77AC1D7C750800957CC2 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
