@@ -207,20 +207,24 @@ final class FeedsListViewController: UITableViewController {
         navigationItem.titleView = segmentControl
     }
     
-    func setupToolBar() {
+    fileprivate func setupToolBar() {
+    
+        navigationController?.toolbar.barTintColor = FlatUIColor.WetAsphalt
         
         // Configure the delete button
         deleteButton.target = self
         deleteButton.action = #selector(deleteButtonTapped)
         deleteButton.isEnabled = false
+        deleteButton.tintColor = FlatUIColor.Clouds
         
         // Configure the favorite button
         favoriteButton.target = self
         favoriteButton.action = #selector(favoriteButtonTapped)
         favoriteButton.isEnabled = false
+        favoriteButton.tintColor = FlatUIColor.Clouds
         
         // Add the buttons to the toolbar
-        navigationController?.setToolbarItems([deleteButton, favoriteButton], animated: false)
+        setToolbarItems([deleteButton, favoriteButton], animated: false)
     }
     
     fileprivate func setupTable() {
@@ -324,7 +328,7 @@ extension FeedsListViewController: MGSwipeTableCellDelegate  {
         return true
     }
     
-    private func swipeTableCell(_ cell: MGSwipeTableCell!, swipeButtonsFor direction: MGSwipeDirection, swipeSettings: MGSwipeSettings!, expansionSettings: MGSwipeExpansionSettings!) -> [AnyObject]! {
+    fileprivate func swipeTableCell(_ cell: MGSwipeTableCell!, swipeButtonsFor direction: MGSwipeDirection, swipeSettings: MGSwipeSettings!, expansionSettings: MGSwipeExpansionSettings!) -> [AnyObject]! {
     
         // Get the feed
         guard let indexPath = tableView.indexPath(for: cell) else { return nil }

@@ -18,9 +18,9 @@ final class EditableFeedViewController: UITableViewController {
 
     // MARK: Fields
     
-    var saveButton = UIBarButtonItem(barButtonSystemItem: .save, target: nil, action: nil)
-    var cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: nil, action: nil)
-    var feed: Feed {
+    private var saveButton = UIBarButtonItem(barButtonSystemItem: .save, target: nil, action: nil)
+    private var cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: nil, action: nil)
+    private var feed: Feed {
         didSet {
             let validTitle = feed.title != nil || feed.title != ""
             let validUrl = feed.url != nil
@@ -41,29 +41,33 @@ final class EditableFeedViewController: UITableViewController {
     }
     
     
-    // MARK: UIViewController LifeCycle Callbacks
+    // MARK: View Setup
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        // Setup the cancel button
+    private func setupCancelButton() {
         cancelButton.target = self
         cancelButton.action = #selector(cancelTapped(_:))
         navigationItem.leftBarButtonItem = cancelButton
-        
-        // Setup the save button
+    }
+    
+    private func setupSaveButton() {
         saveButton.target = self
         saveButton.action = #selector(saveTapped(_:))
         saveButton.isEnabled = false
         navigationItem.rightBarButtonItem = saveButton
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+    
+    // MARK: UIViewController LifeCycle Callbacks
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupCancelButton()
+        setupSaveButton()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        resignFirstResponder() // TODO - Does this actually work?
     }
     
     
