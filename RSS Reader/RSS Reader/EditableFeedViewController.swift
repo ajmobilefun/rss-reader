@@ -111,6 +111,8 @@ final class EditableFeedViewController: UITableViewController {
             }()
             cell.textField.placeholder = rep.placeholder
             cell.textField.text = rep.text
+            cell.textField.autocapitalizationType = .none
+            cell.textField.autocorrectionType = .no
             return cell
             
         // Selection fields
