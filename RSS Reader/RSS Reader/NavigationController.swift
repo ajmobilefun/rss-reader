@@ -15,10 +15,10 @@ class NavigationController: UINavigationController {
         navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: FlatUIColor.Clouds]
         navigationBar.tintColor = FlatUIColor.Clouds
         navigationBar.barTintColor = FlatUIColor.WetAsphalt
-        navigationBar.translucent = false
+        navigationBar.isTranslucent = false
     }
     
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return .LightContent
+    override var preferredStatusBarStyle : UIStatusBarStyle {
+        return .lightContent
     }
 }

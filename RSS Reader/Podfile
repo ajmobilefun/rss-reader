@@ -4,9 +4,9 @@
  use_frameworks!
 
 target 'RSS Reader' do
-  pod 'couchbase-lite-ios', '~> 1.3'
-  pod 'Gloss', '~> 0.7'
-  pod 'MGSwipeTableCell'
+  pod 'couchbase-lite-ios'
+  pod 'Gloss', '~> 1.0'
+  pod 'MGSwipeTableCell'  
 end
 
 target 'RSS ReaderTests' do

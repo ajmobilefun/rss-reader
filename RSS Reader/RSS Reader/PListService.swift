@@ -16,19 +16,19 @@ struct PListService {
 
     // MARK: Fields
 
-    private static let kSegment = "selected_segment"
+    fileprivate static let kSegment = "selected_segment"
 
 
     // MARK: Functions
     
-    static func setSegment(segment: Segment) {
-        let preferences = NSUserDefaults.standardUserDefaults()
-        preferences.setObject(segment.rawValue, forKey: kSegment)
+    static func setSegment(_ segment: Segment) {
+        let preferences = UserDefaults.standard
+        preferences.set(segment.rawValue, forKey: kSegment)
     }
     
     static func getSegment() -> Segment? {
-        let preferences = NSUserDefaults.standardUserDefaults()
-        guard let rawValue = preferences.stringForKey(kSegment) else { return nil }
+        let preferences = UserDefaults.standard
+        guard let rawValue = preferences.string(forKey: kSegment) else { return nil }
         return Segment(rawValue: rawValue)
     }
 }

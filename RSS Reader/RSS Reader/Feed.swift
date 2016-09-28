@@ -12,26 +12,26 @@ import Gloss
 /**
     A model for an RSS feed that includes meta data for the feed.
 */
-struct Feed: CBLDocument {
+struct Feed: CBLObject {
 
     // MARK: Fields
 
     var category: String?
     var subtitle: String?
     var title: String?
-    var url: NSURL?
+    var url: URL?
     var favorite: Bool = false
     
     
     // MARK: Initializers
     
     init() {
-        id = NSUUID().UUIDString
+        id = UUID().uuidString
         rev = nil
     }
     
     
-    // MARK: CBLDocument Implementation
+    // MARK: CBLObject Implementation
     
     static let view = CBLView.Feeds
     let id: String
@@ -42,7 +42,7 @@ struct Feed: CBLDocument {
         // Assert the required fields exist
         guard
         let title: String = "title" <~~ json,
-        let url: NSURL = "url" <~~ json,
+        let url: URL = "url" <~~ json,
         let id: String = "_id" <~~ json
         else { return nil }
         
@@ -51,13 +51,14 @@ struct Feed: CBLDocument {
         self.title = title
         self.url = url
         rev = "_rev" <~~ json
-        category = "category" <~~ json ?? ""
+        category = ("category" <~~ json) ?? ""
         subtitle = "subtitle" <~~ json ?? ""
         favorite = "favorite" <~~ json ?? false
     }
     
     func toJSON() -> JSON? {
         return jsonify([
+            "_rev" ~~> rev,
             "category" ~~> category,
             "subtitle" ~~> subtitle,
             "title" ~~> title,

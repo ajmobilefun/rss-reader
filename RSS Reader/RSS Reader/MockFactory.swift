@@ -24,6 +24,7 @@ struct MockFactory {
             feed.subtitle = subtitles[i]
             feed.category = categories[i]
             feed.favorite = favorite[i]
+            feed.url = URL(string: "https://www.google.com")
             ret.append(feed)
         }
         return ret

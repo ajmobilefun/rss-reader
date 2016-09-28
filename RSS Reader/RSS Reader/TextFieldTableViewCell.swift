@@ -22,12 +22,12 @@ final class TextFieldTableViewCell: UITableViewCell {
     // MARK: Initializers
     
     init() {
-        super.init(style: .Default, reuseIdentifier: nil)
+        super.init(style: .default, reuseIdentifier: nil)
         setup()
     }
     
     init(reuseId: String?) {
-        super.init(style: .Default, reuseIdentifier: reuseId)
+        super.init(style: .default, reuseIdentifier: reuseId)
         setup()
     }
     
@@ -42,28 +42,24 @@ final class TextFieldTableViewCell: UITableViewCell {
     
     // MARK: Helper Functions
     
-    private func setup() {
+    fileprivate func setup() {
     
         // Configure the views
-        textField.borderStyle = .None
-        selectionStyle = .None
-    }
-    
-    
-    // MARK: UIView Callbacks
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
+        textField.borderStyle = .none
+        selectionStyle = .none
+        
+        // Add the subviews
+        contentView.addSubview(textField)
         
         // Set the constraints
-        let constraints = NSLayoutConstraint.constraintsWithVisualFormat(
-            "H:|-margin-[textField]-margin-|",
-            options: .AlignAllCenterY,
-            metrics: ["margin": 8],
+        let constraints = NSLayoutConstraint.constraints(
+            withVisualFormat: "H:|-18-[textField]-8-|",
+            options: .alignAllCenterY,
+            metrics: nil,
             views: ["textField": textField]
         )
-        contentView.addSubview(textField)
-        contentView.addConstraints(constraints)
+        let centered = NSLayoutConstraint(item: textField, attribute: .centerY, relatedBy: .equal, toItem: contentView, attribute: .centerY, multiplier: 1, constant: 0)
+        contentView.addConstraints(constraints + [centered])
         textField.translatesAutoresizingMaskIntoConstraints = false
     }
 }

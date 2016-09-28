@@ -43,36 +43,36 @@ extension Dictionary {
     /// A function that returns the value for a given key path
     /// delimited with the "." character. The function returns
     /// nil if the key path is invalid or the value does not exist.
-    func getValueForKeyPath(path: String) -> Value? {
+    func getValueForKeyPath(_ path: String) -> Value? {
     
-        func recursion(keys: [String]) -> Value? {
+        func recursion(_ keys: [String]) -> Value? {
         
             var keys = keys
             guard let key = keys.first! as? Key else { return nil }
             let keysRemain = keys.count > 1
             
             // Recurse if the value is a dictionary and there is more than one key left
-            if let dict = self[key] as? Dictionary where keysRemain {
+            if let dict = self[key] as? Dictionary , keysRemain {
                 let _ = keys.removeFirst()
-                return dict.getValueForKeyPath(keys.joinWithSeparator("."))
+                return dict.getValueForKeyPath(keys.joined(separator: "."))
             } else if keysRemain { return nil }
             else { return self[key] }
         }
-        return recursion(path.componentsSeparatedByString("."))
+        return recursion(path.components(separatedBy: "."))
     }
     
     /// A function that sets the value for a keypath with a
     /// '.' delimiter. This function will apply the path and value
     /// under all conditions, if and only if, the dictionary is
     /// JSON.
-    mutating func setValueForKeyPath(path: String, value: AnyObject?) {
+    mutating func setValueForKeyPath(_ path: String, value: AnyObject?) {
     
         // Assert the type parameters
         guard (String.self == Key.self) && (AnyObject?.self == Value.self)
         else { return }
         
         // Beak the path into individual keys
-        let keys = path.componentsSeparatedByString(".")
+        let keys = path.components(separatedBy: ".")
         
         // Generate the subpaths and exlude the final key
         // e.g. "test.path.one.two" -> ["test.path.one", "test.path", "test"]
@@ -80,7 +80,7 @@ extension Dictionary {
         for i in 0...keys.count - 1 { // -1 exludes last
             let endIndex = keys.count - i
             let slice = keys[0..<endIndex]
-            let subPath = slice.reduce("", combine: { $0 + ".\($1)" })
+            let subPath = slice.reduce("", { $0 + ".\($1)" })
             subPaths.append(subPath)
         }
         
@@ -96,7 +96,7 @@ extension Dictionary {
             
             // Get the current key
             // Type checked at the beginning of the function
-            guard let key = subPath.componentsSeparatedByString(".").last as? Key
+            guard let key = subPath.components(separatedBy: ".").last as? Key
             else { return }
             
             // If this is the first dictionary set the value
@@ -132,7 +132,7 @@ extension Dictionary {
         }
         
         // Get the last dictionary in the list which is the new value
-        guard let newValue = dicts.last, key = keys.first as? Key else { return }
+        guard let newValue = dicts.last, let key = keys.first as? Key else { return }
         self[key] = newValue as? Value
     }
 }

@@ -10,16 +10,16 @@ import Foundation
 
 struct TextUtils {
 
-    static func boldSearchResult(searchString: String?, resultString: String?, size: CGFloat?) -> NSMutableAttributedString {
+    static func boldSearchResult(_ searchString: String?, resultString: String?, size: CGFloat?) -> NSMutableAttributedString {
         guard let searchString = searchString, let resultString = resultString else { return NSMutableAttributedString() }
         let attributedString: NSMutableAttributedString = NSMutableAttributedString(string: resultString)
-        let pattern: String = searchString.lowercaseString
+        let pattern: String = searchString.lowercased()
         let range: NSRange = NSMakeRange(0, resultString.characters.count)
-        guard let regex: NSRegularExpression = try? NSRegularExpression(pattern: pattern, options: NSRegularExpressionOptions())
+        guard let regex: NSRegularExpression = try? NSRegularExpression(pattern: pattern, options: NSRegularExpression.Options())
         else { return NSMutableAttributedString(string: resultString) }
-        regex.enumerateMatchesInString(resultString.lowercaseString, options: NSMatchingOptions(), range: range) { (textCheckingResult, matchingFlags, stop) -> Void in
+        regex.enumerateMatches(in: resultString.lowercased(), options: NSRegularExpression.MatchingOptions(), range: range) { (textCheckingResult, matchingFlags, stop) -> Void in
             let subRange = textCheckingResult?.range
-            attributedString.addAttribute(NSFontAttributeName, value: UIFont.boldSystemFontOfSize(size ?? 12), range: subRange!)
+            attributedString.addAttribute(NSFontAttributeName, value: UIFont.boldSystemFont(ofSize: size ?? 12), range: subRange!)
         }
         return attributedString
     }

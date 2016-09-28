@@ -19,48 +19,48 @@ final class NetworkService {
     
     /// A shared instance for fetching XML data under the same
     /// conditions.
-    private static let sharedInstance = NetworkService()
+    fileprivate static let sharedInstance = NetworkService()
     
     /// The established network session.
-    private let session: NSURLSession
+    fileprivate let session: URLSession
     
     
     // MARK: Initializers
     
     /// The designated initializer that configures the session.
-    private init() {
+    fileprivate init() {
         
         // Create the configuration object
-        let configuration = NSURLSessionConfiguration.defaultSessionConfiguration()
-        configuration.HTTPCookieStorage = NSHTTPCookieStorage.sharedHTTPCookieStorage()
-        configuration.HTTPCookieAcceptPolicy = NSHTTPCookieAcceptPolicy.Always
-        configuration.HTTPShouldSetCookies = true
-        configuration.HTTPAdditionalHeaders = [
+        let configuration = URLSessionConfiguration.default
+        configuration.httpCookieStorage = HTTPCookieStorage.shared
+        configuration.httpCookieAcceptPolicy = HTTPCookie.AcceptPolicy.always
+        configuration.httpShouldSetCookies = true
+        configuration.httpAdditionalHeaders = [
             "Content-Type": "application/json",
             "Accept": "application/json"
         ]
         
         // Create the singleton session with the conguration object
-        session = NSURLSession(configuration: configuration)
+        session = URLSession(configuration: configuration)
     }
     
     
     // MARK: Interface
     
     /// Fetches data from a url string or call backs with nothing if any errors occur.
-    func fetchXML(fromUrl url: String, callback: (xml: NSData?) -> ()) {
+    func fetchXML(fromUrl url: String, callback: @escaping (_ xml: Data?) -> ()) {
     
         // Assert the URL is valid
-        guard let url = NSURL(string: url) else {
+        guard let url = URL(string: url) else {
             print("The RSS URL is invalid")
-            callback(xml: nil)
+            callback(nil)
             return
         }
         
         // Create and configure a request object
-        let request = NSMutableURLRequest(URL: url)
-        request.HTTPMethod = "GET"
-        request.timeoutInterval = NSTimeInterval(40.0)
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        request.timeoutInterval = TimeInterval(40.0)
         
         let acceptHeaders = ["application/xml", "application/rss+xml", "text/xml"]
         acceptHeaders.forEach({
@@ -68,27 +68,27 @@ final class NetworkService {
         })
 
         // Create the task
-        let task = session.dataTaskWithRequest(request) {(data, response, error) in
+        let task = session.dataTask(with: request, completionHandler: {(data, response, error) in
         
             guard
             let xmlData = data, // Assert there is data
-            let urlResponse = response as? NSHTTPURLResponse // Assert there was a response
-            where urlResponse.statusCode < 400 && error == nil // Assert acceptable status code
+            let urlResponse = response as? HTTPURLResponse // Assert there was a response
+            , urlResponse.statusCode < 400 && error == nil // Assert acceptable status code
             else {
-                print("Data: \(data)\nResponse: \(response as? NSHTTPURLResponse)\nStatus code: \((response as? NSHTTPURLResponse)?.statusCode)\nError: \(error?.localizedDescription)")
+                print("Data: \(data)\nResponse: \(response as? HTTPURLResponse)\nStatus code: \((response as? HTTPURLResponse)?.statusCode)\nError: \(error?.localizedDescription)")
     
                 // Callback to the main thread
-                dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                    callback(xml: nil)
+                DispatchQueue.main.async(execute: { () -> Void in
+                    callback(nil)
                 })
                 return
             }
             
             // Return the xml data onto the main thread
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                callback(xml: xmlData)
+            DispatchQueue.main.async(execute: { () -> Void in
+                callback(xmlData)
             })
-        }
+        }) 
         
         // Run the task
         task.resume()

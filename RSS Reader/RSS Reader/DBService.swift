@@ -17,7 +17,7 @@ import Gloss
     A protocol that encapusulates the information needed for
     an object to interact with the database.
 */
-protocol CBLDocument: Glossy {
+protocol CBLObject: Glossy {
     var id: String { get }
     var rev: String? { get }
     static var view: CBLView { get }
@@ -47,18 +47,18 @@ final class DBService {
     // MARK: Fields
     
     static let sharedInstance = DBService()
-    private let dbName = "rss_reader"
-    private let manager: CBLManager = CBLManager.sharedInstance()
-    private let db: CBLDatabase
+    fileprivate let dbName = "rss_reader"
+    fileprivate let manager: CBLManager = CBLManager.sharedInstance()
+    fileprivate let db: CBLDatabase
     
     
     // MARK: Initializers
     
-    private init() {
+    fileprivate init() {
     
         // Open the database
         do { try db = manager.databaseNamed(dbName) }
-        catch let _ { fatalError("Failed to instantiate the database") }
+        catch _ { fatalError("Failed to instantiate the database") }
         
         // Setup the feeds view
         let feedsViewConfig: ViewConfig = (.Feeds, 0, [], [])
@@ -75,7 +75,7 @@ final class DBService {
     // NOTE: The values produced from the keys keypaths must not be nil.
     // Forced unwrapping is used by assuming this. This is because we want
     // Our keys array to always be equivalent in size.
-    private func setupView(viewConfig: ViewConfig) {
+    fileprivate func setupView(_ viewConfig: ViewConfig) {
         
         // Get the view
         let viewName = viewConfig.view.rawValue
@@ -86,26 +86,25 @@ final class DBService {
             
             // Only emit the document if it has the correct value 
             // for the view key
-            if let feedViewName = doc[CBLView.viewKey] as? String
-            where feedViewName == viewName {
+            if let feedViewName = doc[CBLView.viewKey] as? String, feedViewName == viewName {
             
                 // Get the keys
                 let keys: [AnyObject] = viewConfig.keysPaths.map({
-                    doc.getValueForKeyPath($0)!
+                    doc.getValueForKeyPath($0) as AnyObject
                 })
                 
                 // Get the compact doc
                 var values = [String: AnyObject]()
                 viewConfig.valuesPath.forEach({
                     let value = doc.getValueForKeyPath($0)
-                    values[$0] = value
+                    values[$0] = value as AnyObject?
                 })
                 
                 // Emit the row
-                emit(keys, values)
+                emit(keys, nil)
             }
             
-        }, reduceBlock: { (keys, values, rereduce) in
+        }, reduce: { (keys, values, rereduce) in
         
             // Return the number of documents
             return values.count
@@ -118,44 +117,80 @@ final class DBService {
     
     // MARK: Destructors
     
-    func delete(documentWithId id: String) {
-        let _ = try? db.deleteLocalDocumentWithID(id)
+    func delete(objectWithId id: String) -> Bool {
+        guard let _ = try? db.deleteLocalDocument(withID: id) else {
+            print("\(#file) \(#function) - Failed to delete a document with id: \(id)")
+            return false
+        }
+        return true
+    }
+    
+    func reset() -> Bool {
+        guard let _ = try? db.delete() else {
+            print("\(#file) \(#function) - Failed to delete the database")
+            return false
+        }
+        return true
     }
     
     
     // MARK: Getters
     
-    func get<Object: CBLDocument>(documentWithId id: String) -> Object? {
+    func get<Object: CBLObject>(objectWithId id: String) -> Object? {
     
         // Get the document
-        guard
-        let document = db.existingDocumentWithID(id),
-        let dictionary = document.properties
-        else { return nil }
+        guard let document = db.existingDocument(withID: id) else {
+            print("\(#file) \(#function) - A document does not exist for id: \(id)")
+            return nil
+        }
+        
+        // Get the properties
+        guard let dictionary = document.properties else {
+            print("\(#file) \(#function) - The document does not have any properties")
+            return nil
+        }
         
         // Initialize and return the object
-        return Object(json: dictionary)
+        return Object(json: dictionary as JSON)
     }
     
-    func getObjects<Object: CBLDocument>() -> [Object] {
+    func getObjects<Object: CBLObject>() -> [Object] {
         
         // Get the view
         let viewName = Object.view.rawValue
         guard let view = db.existingViewNamed(viewName)
-        else { return [] }
+        else {
+            print("\(#file) \(#function) - A view does not exist for name \(viewName)")
+            return []
+        }
+        
+        print(view.totalRows)
         
         // Run the query
         let query = view.createQuery()
         query.prefetch = true
+        query.mapOnly = true
         guard let enumerator = try? query.run()
-        else { return [] }
+        else {
+            print("\(#file) \(#function) - Failed to run the query")
+            return []
+        }
         
+        // Loop through the view
         var objects = [Object]()
         while let row = enumerator.nextRow() {
-            guard
-            let json = row.documentProperties,
-            let object = Object(json: json)
-            else { continue }
+            
+            // Get the properties
+            guard let json = row.documentProperties else {
+                print("\(#file) \(#function) - There are no properties for the document")
+                continue
+            }
+            
+            // Instantiate and add the object
+            guard let object = Object(json: json as JSON) else {
+                print("\(#file) \(#function) - Failed to instantiate the object")
+                continue
+            }
             objects.append(object)
         }
         return objects
@@ -164,21 +199,23 @@ final class DBService {
     
     // MARK: Savers
     
-    func save<Object: CBLDocument>(object: Object) {
+    func save<Object: CBLObject>(_ object: Object) -> Bool {
     
         // Convert the object in to json
         guard var json = object.toJSON() else {
-            print("\(#function) was unable to produce json from the passed object")
-            return
+            print("\(#file) \(#function) -  Unable to produce json from the passed object")
+            return false
         }
         
         // Get the document and overwrite it
-        let document = db.documentWithID(object.id)
-        let _ = json.removeValueForKey(object.id)
+        let document = db.document(withID: object.id)
+        json[CBLView.viewKey] = Object.view.rawValue as AnyObject?
         guard let _ = try? document?.putProperties(json) else {
-            print("\(#function) failed to put properties onto document with id \(object.id)")
-            return
+            print("\(#file) \(#function) - Failed to put properties onto document with id \(object.id)")
+            return false
         }
+        
+        return true
     }
 }
 

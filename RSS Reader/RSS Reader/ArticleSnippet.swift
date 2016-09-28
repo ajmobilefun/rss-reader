@@ -13,7 +13,7 @@ import Gloss
     An object that encapsulates the 'cared about' information used in
     an XML RSS data.
 */
-struct ArticleSnippet: CBLDocument {
+struct ArticleSnippet: CBLObject {
     
     // MARK: Fields
     
@@ -27,12 +27,12 @@ struct ArticleSnippet: CBLDocument {
     // MARK: Initializers
     
     init() {
-        id = NSUUID().UUIDString
+        id = UUID().uuidString
         rev = nil
     }
     
     
-    // MARK: CBLDocument Implementation
+    // MARK: CBLObject Implementation
     
     static let view = CBLView.Articles
     let id: String
@@ -56,6 +56,8 @@ struct ArticleSnippet: CBLDocument {
     
     func toJSON() -> JSON? {
         return jsonify([
+            "_id" ~~> id,
+            "_rev" ~~> rev,
             "title" ~~> title,
             "description" ~~> description,
             "pubDate" ~~> pubDate,

@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		4237BC591D7CEDE500C01482 /* Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4237BC581D7CEDE500C01482 /* Dictionary.swift */; };
 		4237BC5D1D7CEEF300C01482 /* ArticleSnippet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4237BC5C1D7CEEF300C01482 /* ArticleSnippet.swift */; };
+		425D1A5B1D8F30C4002444C5 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 425D1A5A1D8F30C4002444C5 /* Theme.swift */; };
+		425D1A5D1D8F578D002444C5 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 425D1A5C1D8F578D002444C5 /* SettingsViewController.swift */; };
 		427286911D7E30F600758321 /* FeedsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427286901D7E30F600758321 /* FeedsListViewController.swift */; };
 		427286931D7E316600758321 /* ArticlesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427286921D7E316600758321 /* ArticlesListViewController.swift */; };
 		427286951D7E317000758321 /* ArticleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427286941D7E317000758321 /* ArticleViewController.swift */; };
@@ -53,6 +55,8 @@
 /* Begin PBXFileReference section */
 		4237BC581D7CEDE500C01482 /* Dictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dictionary.swift; sourceTree = "<group>"; };
 		4237BC5C1D7CEEF300C01482 /* ArticleSnippet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleSnippet.swift; sourceTree = "<group>"; };
+		425D1A5A1D8F30C4002444C5 /* Theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		425D1A5C1D8F578D002444C5 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		427286901D7E30F600758321 /* FeedsListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedsListViewController.swift; sourceTree = "<group>"; };
 		427286921D7E316600758321 /* ArticlesListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticlesListViewController.swift; sourceTree = "<group>"; };
 		427286941D7E317000758321 /* ArticleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleViewController.swift; sourceTree = "<group>"; };
@@ -155,6 +159,7 @@
 				427286981D7E31E400758321 /* EditableFeedViewController.swift */,
 				42D7A39A1D8C0AF200D995C7 /* CustomListViewController.swift */,
 				42ECEB281D8EDAA5007A34A4 /* NavigationController.swift */,
+				425D1A5C1D8F578D002444C5 /* SettingsViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -241,6 +246,7 @@
 				4237BC5B1D7CEEE700C01482 /* Models */,
 				4237BC5A1D7CEDE800C01482 /* Extensions */,
 				42C3DB2C1D7C7C160031FBC8 /* Services */,
+				425D1A5A1D8F30C4002444C5 /* Theme.swift */,
 			);
 			path = "RSS Reader";
 			sourceTree = "<group>";
@@ -329,18 +335,22 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0730;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = "Andrew Johnson";
 				TargetAttributes = {
 					42CE779F1D7C750800957CC2 = {
 						CreatedOnToolsVersion = 7.3.1;
+						LastSwiftMigration = 0800;
+						ProvisioningStyle = Manual;
 					};
 					42CE77B31D7C750800957CC2 = {
 						CreatedOnToolsVersion = 7.3.1;
+						LastSwiftMigration = 0800;
 						TestTargetID = 42CE779F1D7C750800957CC2;
 					};
 					42CE77BE1D7C750800957CC2 = {
 						CreatedOnToolsVersion = 7.3.1;
+						LastSwiftMigration = 0800;
 						TestTargetID = 42CE779F1D7C750800957CC2;
 					};
 				};
@@ -446,6 +456,7 @@
 			files = (
 				4272869D1D7E32B100758321 /* Feed.swift in Sources */,
 				4237BC591D7CEDE500C01482 /* Dictionary.swift in Sources */,
+				425D1A5D1D8F578D002444C5 /* SettingsViewController.swift in Sources */,
 				427286931D7E316600758321 /* ArticlesListViewController.swift in Sources */,
 				427286911D7E30F600758321 /* FeedsListViewController.swift in Sources */,
 				427286A41D7E3DF900758321 /* DBService.swift in Sources */,
@@ -461,6 +472,7 @@
 				42C3DB301D7C7DE80031FBC8 /* NetworkService.swift in Sources */,
 				4237BC5D1D7CEEF300C01482 /* ArticleSnippet.swift in Sources */,
 				42ECEB291D8EDAA5007A34A4 /* NavigationController.swift in Sources */,
+				425D1A5B1D8F30C4002444C5 /* Theme.swift in Sources */,
 				42C3DB2E1D7C7C5D0031FBC8 /* XMLParser.swift in Sources */,
 				42B6ADCD1D8E2B820041FEEA /* MockFactory.swift in Sources */,
 			);
@@ -523,8 +535,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -546,11 +560,12 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -568,8 +583,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -585,9 +602,11 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -596,12 +615,16 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 9F34162BAB7231B745E9CD9D /* Pods-RSS Reader.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "RSS Reader/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.andrewjohnson.RSS-Reader";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "RSS Reader/RSSReader-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -609,12 +632,16 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6456102A45A629561DCAEF37 /* Pods-RSS Reader.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "RSS Reader/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.andrewjohnson.RSS-Reader";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "RSS Reader/RSSReader-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -626,6 +653,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.andrewjohnson.RSS-ReaderTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RSS Reader.app/RSS Reader";
 			};
 			name = Debug;
@@ -638,6 +666,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.andrewjohnson.RSS-ReaderTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RSS Reader.app/RSS Reader";
 			};
 			name = Release;
@@ -649,6 +678,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.andrewjohnson.RSS-ReaderUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = "RSS Reader";
 			};
 			name = Debug;
@@ -660,6 +690,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.andrewjohnson.RSS-ReaderUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = "RSS Reader";
 			};
 			name = Release;

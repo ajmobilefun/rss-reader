@@ -20,11 +20,11 @@ final class TextFieldButtonTableViewCell: UITableViewCell {
     // MARK: Initializers
     
     init() {
-        super.init(style: .Default, reuseIdentifier: nil)
+        super.init(style: .default, reuseIdentifier: nil)
     }
     
     init(reuseId: String?) {
-        super.init(style: .Default, reuseIdentifier: reuseId)
+        super.init(style: .default, reuseIdentifier: reuseId)
     }
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
@@ -42,24 +42,24 @@ final class TextFieldButtonTableViewCell: UITableViewCell {
         super.awakeFromNib()
         
         // Configure the views
-        selectionStyle = .None
+        selectionStyle = .none
         addButton.layer.cornerRadius = 6
-        addButton.layer.backgroundColor = FlatUIColor.BelizeHole.CGColor
-        textField.borderStyle = .None
+        addButton.layer.backgroundColor = FlatUIColor.BelizeHole.cgColor
+        textField.borderStyle = .none
         
         // Set the constraints
         let metrics = ["margin": 8]
-        let views = ["textField": textField, "addButton": addButton]
+        let views = ["textField": textField, "addButton": addButton] as [String : Any]
         
-        let vConstraints = NSLayoutConstraint.constraintsWithVisualFormat(
-            "V:|-[addButton(35)]-|",
+        let vConstraints = NSLayoutConstraint.constraints(
+            withVisualFormat: "V:|-[addButton(35)]-|",
             options: [],
             metrics: metrics,
             views: views
         )
         
-        let hConstraints = NSLayoutConstraint.constraintsWithVisualFormat(
-            "H:|-margin-[textField]-margin-[addButton(50)]-margin-|",
+        let hConstraints = NSLayoutConstraint.constraints(
+            withVisualFormat: "H:|-margin-[textField]-margin-[addButton(50)]-margin-|",
             options: [],
             metrics: metrics,
             views: views

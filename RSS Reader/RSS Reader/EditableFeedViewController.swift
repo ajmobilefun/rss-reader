@@ -18,13 +18,13 @@ final class EditableFeedViewController: UITableViewController {
 
     // MARK: Fields
     
-    var saveButton = UIBarButtonItem(barButtonSystemItem: .Save, target: nil, action: nil)
-    var cancelButton = UIBarButtonItem(barButtonSystemItem: .Cancel, target: nil, action: nil)
+    var saveButton = UIBarButtonItem(barButtonSystemItem: .save, target: nil, action: nil)
+    var cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: nil, action: nil)
     var feed: Feed {
         didSet {
             let validTitle = feed.title != nil || feed.title != ""
             let validUrl = feed.url != nil
-            saveButton.enabled = validTitle && validUrl
+            saveButton.isEnabled = validTitle && validUrl
         }
     }
 
@@ -33,7 +33,7 @@ final class EditableFeedViewController: UITableViewController {
     
     init(feed: Feed?) {
         self.feed = feed ?? Feed()
-        super.init(style: .Grouped)
+        super.init(style: .grouped)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -54,39 +54,39 @@ final class EditableFeedViewController: UITableViewController {
         // Setup the save button
         saveButton.target = self
         saveButton.action = #selector(saveTapped(_:))
-        saveButton.enabled = false
+        saveButton.isEnabled = false
         navigationItem.rightBarButtonItem = saveButton
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
     }
     
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
     }
     
     
     // MARK: Button Actions
     
-    func cancelTapped(sender: UIBarButtonItem) {
-        dismissViewControllerAnimated(true, completion: nil)
+    func cancelTapped(_ sender: UIBarButtonItem) {
+        dismiss(animated: true, completion: nil)
     }
     
-    func saveTapped(sender: UIBarButtonItem) {
+    func saveTapped(_ sender: UIBarButtonItem) {
         guard feed.url != nil && feed.title != nil else { return }
-        DBService.sharedInstance.save(feed)
-        dismissViewControllerAnimated(true, completion: nil)
+        _ = DBService.sharedInstance.save(feed) // TODO - prompt error
+        dismiss(animated: true, completion: nil)
     }
     
     
     // MARK: UITableView DataSource
     
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return 2 // Text fields and selection field
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     
         if section == 0 {
             return 3 // Title, subtitle, url
@@ -95,17 +95,17 @@ final class EditableFeedViewController: UITableViewController {
         }
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     
         // Text fields
-        if indexPath.section == 0 {
+        if (indexPath as NSIndexPath).section == 0 {
             let reuseId = "text_field_cell"
-            let cell = tableView.dequeueReusableCellWithIdentifier(reuseId) as? TextFieldTableViewCell ?? TextFieldTableViewCell(reuseId: reuseId)
+            let cell = tableView.dequeueReusableCell(withIdentifier: reuseId) as? TextFieldTableViewCell ?? TextFieldTableViewCell(reuseId: reuseId)
             let rep: (placeholder: String, text: String?) = {
-                switch indexPath.row {
+                switch (indexPath as NSIndexPath).row {
                 case 0: return ("Title", feed.title)
                 case 1: return ("Subtitle", feed.subtitle)
-                case 2: return ("Url (e.g. http://blogs.nasa.gov/stationreport/feed)", feed.url?.absoluteString)
+                case 2: return ("Url", feed.url?.absoluteString)
                 default: return ("", nil)
                 }
             }()
@@ -116,9 +116,9 @@ final class EditableFeedViewController: UITableViewController {
         // Selection fields
         } else {
             let reuseId = "selection_cell"
-            let cell = tableView.dequeueReusableCellWithIdentifier(reuseId) ?? UITableViewCell(style: .Value1, reuseIdentifier: reuseId)
-            cell.selectionStyle = .Blue
-            cell.accessoryType = .DisclosureIndicator
+            let cell = tableView.dequeueReusableCell(withIdentifier: reuseId) ?? UITableViewCell(style: .value1, reuseIdentifier: reuseId)
+            cell.selectionStyle = .blue
+            cell.accessoryType = .disclosureIndicator
             cell.textLabel?.text = "Category"
             cell.detailTextLabel?.text = feed.category
             return cell
@@ -128,12 +128,12 @@ final class EditableFeedViewController: UITableViewController {
     
     // MARK: UITableView Delegate
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     
-        tableView.deselectRowAtIndexPath(indexPath, animated: true) // Button click effect
+        tableView.deselectRow(at: indexPath, animated: true) // Button click effect
         
         // Selection fields
-        if indexPath.section == 1 {
+        if (indexPath as NSIndexPath).section == 1 {
             // TODO
         }
     }
