@@ -78,35 +78,44 @@ final class FeedsListViewController: UITableViewController {
     
     func deleteButtonTapped() {
         
-        // Prompt warning
-        promptDelete()
-        
-        
-        // Remove rows
+        promptToolbarAction(titleStr: "Warning", actionStr: "delete", action: { [weak self] (id) in
+            
+        })
     }
     
     func favoriteButtonTapped() {
         
+        promptToolbarAction(titleStr: "Confirmation", actionStr: "favorite", action: { [weak self] (id) in
+            guard let sections = self?.feeds else { return }
+            //for sections
+        })
     }
     
     
     // MARK: Helper Methods
     
-    fileprivate func promptDelete() {
+    fileprivate func endEditing() {
+        tableView.setEditing(false, animated: true)
+        navigationController?.setToolbarHidden(true, animated: true)
+        editButton.title = "Edit"
+    }
+    
+    fileprivate func promptToolbarAction(titleStr: String?, actionStr: String, action: @escaping (_ id: String) -> ()) {
     
         // Generate the text
-        let dynamicText = selectedFeedIds.count > 1 ? "Are you sure you want to delete these \(selectedFeedIds.count) items?" : "Are you sure you want to delete this item?"
+        let dynamicText = selectedFeedIds.count > 1 ? "Are you sure you want to \(actionStr) these \(selectedFeedIds.count) feeds?" : "Are you sure you want to \(actionStr) this feed?"
         
         // Create and prepare the controller
-        let alertController = UIAlertController(title: "Warning", message: "Are you sou you want to delete \(dynamicText)", preferredStyle: .alert)
+        let alertController = UIAlertController(title: titleStr, message: "Are you sure you want to \(actionStr) \(dynamicText)", preferredStyle: .alert)
         let yes = UIAlertAction(title: "Yes", style: .destructive, handler: { [weak self] (_) in
             guard let ids = self?.selectedFeedIds else { return }
             for id in ids {
-                _ = DBService.sharedInstance.delete(objectWithId: id) // TODO - Prompt error
+                action(id)
             }
             self?.selectedFeedIds = []
+            self?.endEditing()
         })
-        let no = UIAlertAction(title: "No", style: .cancel, handler: { _ in
+        let no = UIAlertAction(title: "No", style: .cancel, handler: { [weak self] (_) in
             alertController.dismiss(animated: true, completion: nil)
         })
         
@@ -209,6 +218,7 @@ final class FeedsListViewController: UITableViewController {
     
     fileprivate func setupToolBar() {
     
+        // Configure the toolbar
         navigationController?.toolbar.barTintColor = FlatUIColor.WetAsphalt
         
         // Configure the delete button
