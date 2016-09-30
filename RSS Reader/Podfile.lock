@@ -7,7 +7,7 @@ PODS:
 
 DEPENDENCIES:
   - couchbase-lite-ios
-  - Gloss (~> 1.0)
+  - Gloss
   - MGSwipeTableCell
 
 SPEC CHECKSUMS:

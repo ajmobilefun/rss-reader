@@ -32,7 +32,6 @@ final class FeedsListViewController: UITableViewController {
     fileprivate var sectionTitles: [String] = []
     fileprivate var selectedFeedIds: Set<String> = [] {
         didSet {
-            favoriteButton.isEnabled = selectedFeedIds.count != 0
             deleteButton.isEnabled = selectedFeedIds.count != 0
         }
     }
@@ -44,7 +43,6 @@ final class FeedsListViewController: UITableViewController {
     fileprivate let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: nil, action: nil)
     fileprivate let settingsButton = UIBarButtonItem(title: "Settings", style: .plain, target: nil, action: nil)
     fileprivate let deleteButton = UIBarButtonItem(title: "Delete", style: .plain, target: nil, action: nil)
-    fileprivate let favoriteButton = UIBarButtonItem(title: "Favorite", style: .plain, target: nil, action: nil)
     
     // MARK: Selectors
     
@@ -77,20 +75,12 @@ final class FeedsListViewController: UITableViewController {
     }
     
     func deleteButtonTapped() {
-        
+    
         promptToolbarAction(titleStr: "Warning", actionStr: "delete", action: { [weak self] (id) in
-            
-        })
-    }
-    
-    func favoriteButtonTapped() {
         
-        promptToolbarAction(titleStr: "Confirmation", actionStr: "favorite", action: { [weak self] (id) in
-            guard let sections = self?.feeds else { return }
-            //for sections
+            return DBService.sharedInstance.delete(objectWithId: id)
         })
     }
-    
     
     // MARK: Helper Methods
     
@@ -100,7 +90,7 @@ final class FeedsListViewController: UITableViewController {
         editButton.title = "Edit"
     }
     
-    fileprivate func promptToolbarAction(titleStr: String?, actionStr: String, action: @escaping (_ id: String) -> ()) {
+    fileprivate func promptToolbarAction(titleStr: String?, actionStr: String, action: @escaping (_ id: String) -> (Bool)) {
     
         // Generate the text
         let dynamicText = selectedFeedIds.count > 1 ? "Are you sure you want to \(actionStr) these \(selectedFeedIds.count) feeds?" : "Are you sure you want to \(actionStr) this feed?"
@@ -108,14 +98,13 @@ final class FeedsListViewController: UITableViewController {
         // Create and prepare the controller
         let alertController = UIAlertController(title: titleStr, message: "Are you sure you want to \(actionStr) \(dynamicText)", preferredStyle: .alert)
         let yes = UIAlertAction(title: "Yes", style: .destructive, handler: { [weak self] (_) in
-            guard let ids = self?.selectedFeedIds else { return }
-            for id in ids {
-                action(id)
-            }
-            self?.selectedFeedIds = []
-            self?.endEditing()
+            guard let controller = self else { return }
+            let ids = controller.selectedFeedIds
+            let success = ids.reduce(true, { $0 && action($1) })
+            controller.selectedFeedIds = []
+            success ? controller.endEditing() : SystemUtils.promptError(withMessage: "An error occured editing the feeds.", onController: controller)
         })
-        let no = UIAlertAction(title: "No", style: .cancel, handler: { [weak self] (_) in
+        let no = UIAlertAction(title: "No", style: .cancel, handler: { (_) in
             alertController.dismiss(animated: true, completion: nil)
         })
         
@@ -227,14 +216,8 @@ final class FeedsListViewController: UITableViewController {
         deleteButton.isEnabled = false
         deleteButton.tintColor = FlatUIColor.Clouds
         
-        // Configure the favorite button
-        favoriteButton.target = self
-        favoriteButton.action = #selector(favoriteButtonTapped)
-        favoriteButton.isEnabled = false
-        favoriteButton.tintColor = FlatUIColor.Clouds
-        
         // Add the buttons to the toolbar
-        setToolbarItems([deleteButton, favoriteButton], animated: false)
+        setToolbarItems([deleteButton], animated: false)
     }
     
     fileprivate func setupTable() {
