@@ -22,8 +22,8 @@ extension Searchable {
     /// Convenient function for checking if the object matches a search text.
     func matchesSearch(text: String) -> Bool {
         let searchText = text.lowercased()
-        return getSearchables().reduce(true, {
-            $1.lowercased().contains(searchText)
+        return getSearchables().reduce(false, {
+            $0 || $1.lowercased().contains(searchText)
         })
     }
 }
