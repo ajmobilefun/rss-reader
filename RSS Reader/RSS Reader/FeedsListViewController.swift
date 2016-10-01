@@ -51,7 +51,7 @@ final class FeedsListViewController: UITableViewController {
         let rawValue = Segment.list[index]
         let currentSegment = Segment(rawValue: rawValue) ?? .Category
         PListService.setSegment(currentSegment)
-        loadFeeds()
+        loadDataArraysForSelectedSegment()
     }
     
     func addButtonTapped() {
@@ -76,13 +76,23 @@ final class FeedsListViewController: UITableViewController {
     
     func deleteButtonTapped() {
     
-        promptToolbarAction(titleStr: "Warning", actionStr: "delete", action: { [weak self] (id) in
+        promptToolbarAction(titleStr: "Warning", actionStr: "delete", action: { (id) in
         
             return DBService.sharedInstance.delete(objectWithId: id)
         })
     }
     
     // MARK: Helper Methods
+    
+    fileprivate func setTableEnabled(enabled: Bool) {
+        tableView.allowsSelection = enabled
+    }
+    
+    fileprivate func isSearching() -> Bool {
+        let notNil = searchBar.text != nil
+        let notEmpty = searchBar.text != ""
+        return notNil && notEmpty
+    }
     
     fileprivate func endEditing() {
         tableView.setEditing(false, animated: true)
@@ -121,23 +131,45 @@ final class FeedsListViewController: UITableViewController {
         present(alertController, animated: true, completion: nil)
     }
     
-    fileprivate func loadFeeds() {
-    
-        // Clear the data arrays
+    fileprivate func clearDataArrays() {
         sectionTitles = []
         feeds = []
+    }
+    
+    fileprivate func loadDataArraysForSearch() {
         
-        // Load and filter the feeds by search text
-        var loadedFeeds: [Feed] = DBService.sharedInstance.getObjects()
-        if let text = searchBar.text, text != "" {
-            loadedFeeds = loadedFeeds.filter({
-                let title = $0.title ?? ""
-                let subtitle = $0.subtitle ?? ""
-                let searchableText = "\(title) \(subtitle)"
-                return searchableText.contains(text)
-            })
+        // Checks and cleanup
+        guard let searchText = searchBar.text else {
+            fatalError("\(#function) was called when there was no search text")
         }
+        clearDataArrays()
         
+        // Get, filter, and sort the feeds
+        let filteredFeeds: [Feed] = DBService.sharedInstance.getObjects().filter({
+            return $0.matchesSearch(text: searchText)
+        })
+        let sortedFeeds: [Feed] = filteredFeeds.sorted(by: {
+            guard let firstTitle = $0.title?.lowercased(), let secondTitle = $1.title?.lowercased() else {
+                return false
+            }
+            return firstTitle < secondTitle
+        })
+        
+        // Populate the data arrays and reload the table
+        feeds = [sortedFeeds]
+        sectionTitles = ["Top Matches"]
+        tableView.reloadData()
+    }
+    
+    fileprivate func loadDataArraysForSelectedSegment() {
+    
+        // Cleanup
+        clearDataArrays()
+        
+        // Get the feeds
+        let loadedFeeds: [Feed] = DBService.sharedInstance.getObjects()
+        
+        // Divide the feeds list via categories
         // Loop through the feeds to build the sectioned feeds
         var sectionedFeeds: [String: [Feed]] = [:]
         let currentSegment = PListService.getSegment() ?? .Category
@@ -170,12 +202,11 @@ final class FeedsListViewController: UITableViewController {
         // Sort the sections
         entries.sort(by: { $0.0.title < $0.1.title })
         
-        // Populate the data arrays
+        // Populate the data arrays and reload the table
         for entry in entries {
             feeds.append(entry.feeds)
             sectionTitles.append(entry.title)
         }
-        
         tableView.reloadData()
     }
     
@@ -248,7 +279,8 @@ final class FeedsListViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        loadFeeds()
+        // Load the data arrays
+        isSearching() ? loadDataArraysForSearch() : loadDataArraysForSelectedSegment()
         
         // Configure the starting position
         tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
@@ -271,7 +303,7 @@ final class FeedsListViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let feed = feeds[(indexPath as NSIndexPath).section][(indexPath as NSIndexPath).row]
+        let feed = feeds[indexPath.section][indexPath.row]
         let reuseId = "feed_cell"
         let cell = MGSwipeTableCell(style: .subtitle, reuseIdentifier: reuseId)
         cell.accessoryType = .disclosureIndicator
@@ -302,7 +334,7 @@ final class FeedsListViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         guard tableView.isEditing else { return }
-        let feed = feeds[(indexPath as NSIndexPath).section][(indexPath as NSIndexPath).row]
+        let feed = feeds[indexPath.section][indexPath.row]
         selectedFeedIds.remove(feed.id)
     }
     
@@ -325,7 +357,7 @@ extension FeedsListViewController: MGSwipeTableCellDelegate  {
     
         // Get the feed
         guard let indexPath = tableView.indexPath(for: cell) else { return nil }
-        var feed = feeds[(indexPath as NSIndexPath).section][(indexPath as NSIndexPath).row]
+        var feed = feeds[indexPath.section][indexPath.row]
         
         if direction == .leftToRight {
 
@@ -346,7 +378,7 @@ extension FeedsListViewController: MGSwipeTableCellDelegate  {
                 
                 feed.favorite = !feed.favorite
                 _ = DBService.sharedInstance.save(feed)
-                self?.loadFeeds()
+                self?.loadDataArraysForSelectedSegment()
                 return true
             }
             return [button!]
@@ -364,7 +396,7 @@ extension FeedsListViewController: MGSwipeTableCellDelegate  {
                 
                 // Remove the feed cell from the table view
                 self?.tableView.beginUpdates()
-                self?.feeds[(indexPath as NSIndexPath).section].remove(at: (indexPath as NSIndexPath).row)
+                self?.feeds[indexPath.section].remove(at: indexPath.row)
                 self?.tableView.deleteRows(at: [indexPath], with: .right)
                 self?.tableView.endUpdates()
                 return true
@@ -382,16 +414,26 @@ extension FeedsListViewController: UISearchBarDelegate {
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         navigationController?.setNavigationBarHidden(true, animated: true)
         searchBar.setShowsCancelButton(true, animated: true)
+        setTableEnabled(enabled: isSearching())
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+    
+        // Reset the searchBar state
         searchBar.resignFirstResponder()
-        tableView.isUserInteractionEnabled = true
-        navigationController?.setNavigationBarHidden(false, animated: true)
         searchBar.setShowsCancelButton(false, animated: true)
+        searchBar.text = nil
+        
+        // Show the navBar and enable the table
+        navigationController?.setNavigationBarHidden(false, animated: true)
+        setTableEnabled(enabled: true)
+        
+        // Reload the table
+        loadDataArraysForSelectedSegment()
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        loadFeeds()
+        setTableEnabled(enabled: isSearching())
+        isSearching() ? loadDataArraysForSearch() : loadDataArraysForSelectedSegment()
     }
 }

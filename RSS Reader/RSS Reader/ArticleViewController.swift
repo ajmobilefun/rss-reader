@@ -11,4 +11,16 @@ import UIKit
 
 final class ArticleViewController: UIViewController {
 
+    // MARK: Fields
+    
+    var article: Article
+    
+    init(article: Article) {
+        self.article = article
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 }

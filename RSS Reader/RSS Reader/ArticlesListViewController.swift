@@ -14,7 +14,7 @@ final class ArticlesListViewController: UITableViewController {
     // MARK: Fields
     
     var feed: Feed
-    var articles: [ArticleSnippet] = []
+    var articles: [Article] = []
     
     
     // MARK: Initializers

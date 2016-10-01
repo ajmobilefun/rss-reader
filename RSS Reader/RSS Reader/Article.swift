@@ -13,7 +13,7 @@ import Gloss
     An object that encapsulates the 'cared about' information used in
     an XML RSS data.
 */
-struct ArticleSnippet: CBLObject {
+struct Article: CBLObject {
     
     // MARK: Fields
     

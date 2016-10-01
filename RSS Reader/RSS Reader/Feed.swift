@@ -67,3 +67,13 @@ struct Feed: CBLObject {
         ])
     }
 }
+
+
+// MARK: Searchable
+
+extension Feed: Searchable {
+    
+    func getSearchables() -> [String] {
+        return [title, category, subtitle].filter({ $0 != nil }).map({ $0! })
+    }
+}
