@@ -23,7 +23,7 @@ enum Segment: String {
     The view controller responsible for displaying a list of the feeds in the user's database.
     The feeds are divided into sections determined by the
 */
-final class FeedsListViewController: UITableViewController {
+final class FeedsListViewController: SearchableTableViewController {
 
     // MARK: Fields
     
@@ -37,7 +37,6 @@ final class FeedsListViewController: UITableViewController {
     }
     
     // Views
-    fileprivate let searchBar = UISearchBar(frame: CGRect.null)
     fileprivate let segmentControl = UISegmentedControl(items: Segment.list)
     fileprivate let editButton = UIBarButtonItem(title: "Edit", style: .plain, target: nil, action: nil)
     fileprivate let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: nil, action: nil)
@@ -68,8 +67,6 @@ final class FeedsListViewController: UITableViewController {
         
         // Update UI
         searchBar.isUserInteractionEnabled = !tableView.isEditing
-        
-        searchBar.barTintColor = FlatUIColor.Emerald
         navigationController?.setToolbarHidden(!tableView.isEditing, animated: true)
         editButton.title = tableView.isEditing ? "Cancel" : "Edit"
     }
@@ -82,17 +79,14 @@ final class FeedsListViewController: UITableViewController {
         })
     }
     
+    
+    // MARK: Abstract Method Implementations
+    
+    override func reloadDataSource() {
+        isSearching() ? loadDataArraysForSearch() : loadDataArraysForSelectedSegment()
+    }
+    
     // MARK: Helper Methods
-    
-    fileprivate func setTableEnabled(enabled: Bool) {
-        tableView.allowsSelection = enabled
-    }
-    
-    fileprivate func isSearching() -> Bool {
-        let notNil = searchBar.text != nil
-        let notEmpty = searchBar.text != ""
-        return notNil && notEmpty
-    }
     
     fileprivate func endEditing() {
         tableView.setEditing(false, animated: true)
@@ -251,44 +245,13 @@ final class FeedsListViewController: UITableViewController {
         setToolbarItems([deleteButton], animated: false)
     }
     
-    fileprivate func setupTable() {
-        
-        // Configure the table
-        tableView.backgroundColor = FlatUIColor.TableLight
-        tableView.allowsMultipleSelectionDuringEditing = true
-        
-        // Configure the table header search bar
-        searchBar.searchBarStyle = .minimal
-        searchBar.tintColor = FlatUIColor.MidnightBlue
-        searchBar.frame.size = CGSize(width: tableView.frame.width, height: 45)
-        searchBar.delegate = self
-        tableView.tableHeaderView = searchBar
-    }
-    
     
     // MARK: UIViewController LifeCycle Callbacks
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setNeedsStatusBarAppearanceUpdate()
         setupNavBar()
         setupToolBar()
-        setupTable()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        // Load the data arrays
-        isSearching() ? loadDataArraysForSearch() : loadDataArraysForSelectedSegment()
-        
-        // Configure the starting position
-        tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        let _ = searchBar.resignFirstResponder()
     }
     
     
@@ -328,6 +291,7 @@ final class FeedsListViewController: UITableViewController {
         } else {
             tableView.deselectRow(at: indexPath, animated: true)
             let controller = ArticlesListViewController(feed: feed)
+            navigationController?.setNavigationBarHidden(false, animated: false)
             navigationController?.pushViewController(controller, animated: true)
         }
     }
@@ -403,37 +367,5 @@ extension FeedsListViewController: MGSwipeTableCellDelegate  {
             }
             return [button!]
         }
-    }
-}
-
-
-// MARK: UISearchBar Delegate
-
-extension FeedsListViewController: UISearchBarDelegate {
-    
-    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-        navigationController?.setNavigationBarHidden(true, animated: true)
-        searchBar.setShowsCancelButton(true, animated: true)
-        setTableEnabled(enabled: isSearching())
-    }
-    
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-    
-        // Reset the searchBar state
-        searchBar.resignFirstResponder()
-        searchBar.setShowsCancelButton(false, animated: true)
-        searchBar.text = nil
-        
-        // Show the navBar and enable the table
-        navigationController?.setNavigationBarHidden(false, animated: true)
-        setTableEnabled(enabled: true)
-        
-        // Reload the table
-        loadDataArraysForSelectedSegment()
-    }
-    
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        setTableEnabled(enabled: isSearching())
-        isSearching() ? loadDataArraysForSearch() : loadDataArraysForSelectedSegment()
     }
 }

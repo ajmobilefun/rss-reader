@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-final class ArticlesListViewController: UITableViewController {
+final class ArticlesListViewController: SearchableTableViewController {
     
     // MARK: Fields
     
@@ -28,10 +28,25 @@ final class ArticlesListViewController: UITableViewController {
         fatalError("\(#function) should not be used")
     }
     
+    // MARK: Abstract Method Implementations
+    
+    override func reloadDataSource() {
+        isSearching() ? loadArticlesForSearchText() : loadAllArticles()
+    }
+    
     
     // MARK: Helper Methods
     
+    func loadAllArticles() {
     
+    }
+    
+    func loadArticlesForSearchText() {
+//        guard let searchText = searchB
+//        articles = DBService.sharedInstance.getObjects().filter({
+//            $0.
+//        })
+    }
     
     // MARK: UIViewController LifeCycle Callbacks
     
@@ -60,8 +75,18 @@ final class ArticlesListViewController: UITableViewController {
     
     // MARK: UITableView Delegate
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt     indexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        
+        let article = articles[indexPath.row]
         // TODO - Go to article
     }
+}
+
+
+// MARK: UISearchBar Delegate
+
+extension ArticlesListViewController {
+    
+    
 }

@@ -10,6 +10,7 @@
 		4237BC591D7CEDE500C01482 /* Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4237BC581D7CEDE500C01482 /* Dictionary.swift */; };
 		4237BC5D1D7CEEF300C01482 /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4237BC5C1D7CEEF300C01482 /* Article.swift */; };
 		4240C6C31DA00809006EEA5D /* Searchable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4240C6C21DA00809006EEA5D /* Searchable.swift */; };
+		4240C6C51DA01B51006EEA5D /* SearchableTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4240C6C41DA01B51006EEA5D /* SearchableTableViewController.swift */; };
 		425D1A5B1D8F30C4002444C5 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 425D1A5A1D8F30C4002444C5 /* Theme.swift */; };
 		425D1A5D1D8F578D002444C5 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 425D1A5C1D8F578D002444C5 /* SettingsViewController.swift */; };
 		425ECC0C1D9DF429009D4A7E /* SystemUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 425ECC0B1D9DF429009D4A7E /* SystemUtils.swift */; };
@@ -58,6 +59,7 @@
 		4237BC581D7CEDE500C01482 /* Dictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dictionary.swift; sourceTree = "<group>"; };
 		4237BC5C1D7CEEF300C01482 /* Article.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Article.swift; sourceTree = "<group>"; };
 		4240C6C21DA00809006EEA5D /* Searchable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Searchable.swift; sourceTree = "<group>"; };
+		4240C6C41DA01B51006EEA5D /* SearchableTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchableTableViewController.swift; sourceTree = "<group>"; };
 		425D1A5A1D8F30C4002444C5 /* Theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		425D1A5C1D8F578D002444C5 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		425ECC0B1D9DF429009D4A7E /* SystemUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SystemUtils.swift; sourceTree = "<group>"; };
@@ -164,6 +166,7 @@
 				42D7A39A1D8C0AF200D995C7 /* CustomListViewController.swift */,
 				42ECEB281D8EDAA5007A34A4 /* NavigationController.swift */,
 				425D1A5C1D8F578D002444C5 /* SettingsViewController.swift */,
+				4240C6C41DA01B51006EEA5D /* SearchableTableViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -475,6 +478,7 @@
 				42D7A39B1D8C0AF200D995C7 /* CustomListViewController.swift in Sources */,
 				42D7A39D1D8C0BA900D995C7 /* TextFieldButtonTableViewCell.swift in Sources */,
 				427286991D7E31E400758321 /* EditableFeedViewController.swift in Sources */,
+				4240C6C51DA01B51006EEA5D /* SearchableTableViewController.swift in Sources */,
 				42AFA9FA1D8C0E5B00D089FC /* FlatUIColor.swift in Sources */,
 				42C3DB301D7C7DE80031FBC8 /* NetworkService.swift in Sources */,
 				4240C6C31DA00809006EEA5D /* Searchable.swift in Sources */,
